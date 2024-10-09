@@ -147,7 +147,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.REPO_NAME }}
+          name: hyprland-musl
           path: ~/packages/hyprland-musl.tar.gz
 
   publish:
@@ -158,7 +158,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: ${{ env.REPO_NAME }}
+          name: hyprland-musl
           path: ~/
 
       - name: Checkout repository
