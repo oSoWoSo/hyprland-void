@@ -92,7 +92,7 @@ jobs:
         run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprwayland-scanner)
 
       - name: Build aquamarine
-        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg aquamarine)
+        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg aquamarine)
 
       - name: Build hyprland
         run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprland)
