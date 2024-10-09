@@ -46,7 +46,7 @@ jobs:
           xbps-install -Syu xbps
           xbps-install -Syu
           xbps-install -y tar curl
-          
+
       - name: Clone Void-Packages and prepare
         run: |
           mkdir ~/void-pkgs
@@ -139,16 +139,40 @@ jobs:
           xbps-rindex --privkey ~/private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" ~/packages
           xbps-rindex --privkey ~/private.pem --sign-pkg ~/packages/*.xbps
 
+      - name: Compress Packages
+        run: |
+          cd ~/packages
+          tar -czvf hyprland-musl.tar.gz *
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.REPO_NAME }}
+          path: ~/packages/hyprland-musl.tar.gz
+
+  publish:
+    name: Pack and Publish
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.REPO_NAME }}
+          path: ~/
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       # We'll blow the size of the repository up very quickly if we do not delete old iterations of the repository
       - name: Delete old repository and recreate with new packages
         run: |
-          cd ~/void-pkgs/${{ env.REPO_NAME }}
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git push https://${{ env.REPO_OWNER }}:${{ secrets.ACCESS_GIT }}@github.com/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}.git -d repository-x86_64-musl
+          git push origin -d repository-x86_64-musl
           git switch --orphan repository-x86_64-musl
-          cp ~/packages/* ./
+          tar -xvf ~/hyprland-musl.tar.gz -C ./
           git add .
           git commit -m "Upload latest packages to repository"
-          git push https://${{ env.REPO_OWNER }}:${{ secrets.ACCESS_GIT }}@github.com/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}.git repository-x86_64-musl
+          git push origin repository-x86_64-musl
 
