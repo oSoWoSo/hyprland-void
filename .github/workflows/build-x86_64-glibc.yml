@@ -72,45 +72,45 @@ jobs:
       # All declared individually for logging purposes
       # Common Deps
       - name: Build tomlplusplus
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg tomlplusplus)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg tomlplusplus)
 
       - name: Build sdbus-cpp
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg sdbus-cpp)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg sdbus-cpp)
 
       
       # Normal Builds
       - name: Build hyprutils
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprutils)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprutils)
 
       - name: Build hyprlang
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprlang)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprlang)
 
       - name: Build hyprcursor
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprcursor)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprcursor)
 
       - name: Build hyprwayland-scanner
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprwayland-scanner)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprwayland-scanner)
 
       - name: Build aquamarine
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg aquamarine)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg aquamarine)
 
       - name: Build hyprland
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprland)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprland)
 
       - name: Build hyprland-protocols
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprland-protocols)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprland-protocols)
 
       - name: Build xdg-desktop-portal-hyprland
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg xdg-desktop-portal-hyprland)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg xdg-desktop-portal-hyprland)
 
       - name: Build hypridle
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hypridle)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hypridle)
 
       - name: Build hyprlock
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprlock)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprlock)
 
       - name: Build hyprpaper
-        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprpaper)
+        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprpaper)
 
       # Sometimes xbps-src builds a bunch of other junk I don't want to be liable for distributing
       - name: Copy relevant packages to new directory to be packaged
