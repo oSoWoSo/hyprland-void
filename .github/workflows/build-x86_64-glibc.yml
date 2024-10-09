@@ -86,7 +86,7 @@ jobs:
         run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprlang)
 
       - name: Build hyprcursor
-        run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprcursor)
+        run: (/hostrepo/xbps-src -j$(nproc) -s -H ~/hostdir pkg hyprcursor)
 
       - name: Build hyprwayland-scanner
         run: (/hostrepo/xbps-src -j$(nproc) -Q -s -H ~/hostdir pkg hyprwayland-scanner)
