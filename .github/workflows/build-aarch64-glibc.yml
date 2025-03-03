@@ -17,7 +17,7 @@ jobs:
 
     container:
       image: ghcr.io/void-linux/void-buildroot-${{ matrix.config.libc }}:20240526R1
-      options: --platform ${{ matrix.config.platform }} --user builder
+      options: --platform ${{ matrix.config.platform }}
       env:
         PATH: "/usr/libexec/chroot-git:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin"
         ARCH: "${{ matrix.config.arch }}"
@@ -83,44 +83,44 @@ jobs:
       # All declared individually for logging purposes
       # Common Deps
       - name: Build tomlplusplus
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg tomlplusplus)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg tomlplusplus")
 
       - name: Build sdbus-cpp
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg sdbus-cpp)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg sdbus-cpp")
 
       # Normal Build
       - name: Build hyprutils
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprutils)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprutils")
 
       - name: Build hyprlang
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprlang)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprlang")
 
       - name: Build hyprcursor
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprcursor)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprcursor")
 
       - name: Build hyprwayland-scanner
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprwayland-scanner)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprwayland-scanner")
 
       - name: Build aquamarine
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg aquamarine)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg aquamarine")
 
       - name: Build hyprland
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprland)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprland")
 
       - name: Build hyprland-protocols
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprland-protocols)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprland-protocols")
 
       - name: Build xdg-desktop-portal-hyprland
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg xdg-desktop-portal-hyprland)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg xdg-desktop-portal-hyprland")
 
       - name: Build hypridle
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hypridle)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hypridle")
 
       - name: Build hyprlock
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprlock)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprlock")
 
       - name: Build hyprpaper
-        run: (/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprpaper)
+        run: (su builder -c "/hostrepo/xbps-src -A aarch64 -j$(nproc) -s -H ~/hostdir pkg hyprpaper")
 
       # Sometimes xbps-src builds a bunch of other junk I don't want to be liable for distributing
       - name: Copy relevant packages to new directory to be packaged
