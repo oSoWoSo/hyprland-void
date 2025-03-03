@@ -17,7 +17,7 @@ jobs:
 
     container:
       image: ghcr.io/void-linux/void-buildroot-${{ matrix.config.libc }}:20240526R1
-      options: --platform ${{ matrix.config.platform }}
+      options: --platform ${{ matrix.config.platform }} --user builder
       env:
         PATH: "/usr/libexec/chroot-git:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/tmp/bin"
         ARCH: "${{ matrix.config.arch }}"
@@ -74,6 +74,11 @@ jobs:
           common/travis/set_mirror.sh &&
           common/travis/prepare.sh &&
           common/travis/fetch-xtools.sh
+
+      - name: Create non-root user
+        run: |
+          useradd -m builder
+          chown -R builder:builder /hostrepo /home/builder
 
       # All declared individually for logging purposes
       # Common Deps
