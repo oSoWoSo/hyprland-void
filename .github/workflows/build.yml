@@ -24,7 +24,7 @@ jobs:
       - name: checkout ${{ env.REPO_NAME }}
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: new
           path: ${{ env.REPO_NAME }}
 
       - name: checkout void-packages
